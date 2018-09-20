@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- custom CSS links -->
+
+    <!-- javascript, and Jquery links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/javascript/game.js"></script>
+
+    <title>trivia Game</title>
+</head>
+<body>
+
+<!-- Nav Bar with Game Header -->
+<nav class="navbar navbar-light bg-light justify-content-between">
+<a class="navbar-brand text-center">Trivia Game!</a>
+</nav>
+
+<!-- Jumbotron for question display -->
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+    <h1 class="display-4">Press</h1>
+    <p class="lead">the Space Bar to Start The Game!</p>
+</div>
+</div>
+    
+<!-- Div for the Possible answers to choose from -->
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action"></button>
+    <button type="button" class="list-group-item list-group-item-action"></button>
+    <button type="button" class="list-group-item list-group-item-action"></button>
+    <button type="button" class="list-group-item list-group-item-action"></button>
+</div>
+
+<br>
+
+<!-- this is for the Wins and loss tracker, plus timer on the same row-->
+<div class="container">
+<div class="row">
+    <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Wins</h5>
+            <hr>
+            <p id="wins" class="card-text"></p>
+        </div>
+        </div>
+    </div>
+
+    <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Losses</h5>
+                <hr>
+                <p id="losses" class="card-text"></p>
+            </div>
+            </div>
+    </div>
+
+    <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Timer</h5>
+                <hr>
+                <p id="timer" class="card-text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
