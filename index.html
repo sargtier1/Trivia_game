@@ -6,9 +6,6 @@
     <!-- custom CSS links -->
 
     <!-- javascript, and Jquery links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/javascript/game.js"></script>
-
     <title>trivia Game</title>
 </head>
 <body>
@@ -21,17 +18,17 @@
 <!-- Jumbotron for question display -->
 <div class="jumbotron jumbotron-fluid">
 <div class="container">
-    <h1 class="display-4">Press</h1>
-    <p class="lead">the Space Bar to Start The Game!</p>
+    <h1 id="display-title" class="display-4">Press</h1>
+    <p id="display-main" class="lead">the Space Bar to Start The Game!</p>
 </div>
 </div>
     
 <!-- Div for the Possible answers to choose from -->
 <div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action"></button>
-    <button type="button" class="list-group-item list-group-item-action"></button>
-    <button type="button" class="list-group-item list-group-item-action"></button>
-    <button type="button" class="list-group-item list-group-item-action"></button>
+    <button type="button" id="1" class="list-group-item list-group-item-action"></button>
+    <button type="button" id="2" class="list-group-item list-group-item-action"></button>
+    <button type="button" id="3" class="list-group-item list-group-item-action"></button>
+    <button type="button" id="4" class="list-group-item list-group-item-action"></button>
 </div>
 
 <br>
@@ -70,6 +67,9 @@
     </div>
 </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </body>
 </html>
