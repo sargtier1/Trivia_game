@@ -3,7 +3,7 @@
 // Question and Answer Object
 var gameMeat = [
     { 
-    q: "What Year Did Wayne Gretzky Retire?",
+    q: "What Year Did Wayne Gretzky Retire?", 
     a: "1999",
     o: ["1996", "1992", "1989", "1999"],
     },
@@ -25,7 +25,7 @@ var gameMeat = [
 //variables that reference HTML
 var displayTitle = $("#display-title"); // jumbotron for question display
 var displayMain = $("#display-main");
-var ansToChose = $(".list-group-item"); 
+var Choices = $(".ans-choices"); 
 var choice1 = $("#1");
 var choice2 = $("#2");
 var choice3 = $("#3");
@@ -40,18 +40,12 @@ var Losses = 0;
 
 // variables for other imoportant items
 var timer;
-
-setTimeout(timeUp, 1000 * 30);
-while(timer > 1) {
-    setTimeout(function(){
-        timer--;
-    }, 1000)
-}
-
 var gameOver = false;
 var timeExpire = false;
+
 // empty variable to store the selected question
 var randomQuestions;
+var intervalId;
 
 // Starts game on the press of space bar
 document.onkeypress = function gameStart(event){
@@ -65,14 +59,15 @@ document.onkeypress = function gameStart(event){
 // Creates function that initalizes teh game board
 // not sure if this is possible but we will see
 function gameInit1() {
-    // set timer to 30 seconds
-    timer = 30;
-    // Display timer
-    timeDisplay.text(":" + timer);
+    // sets up timer, and displays results
+    run();
+    timer = 10;
+    decrement();
+    console.log(timer);
 
     // Display Question
-    displayTitle.text("Question 1: ");
-    console.log("Question 1: ");
+    displayTitle.text("The Questions Is: ");
+    console.log("Question is: ");
     displayMain.text(gameMeat[0].q);
     console.log(gameMeat[0].q);
 
@@ -83,9 +78,8 @@ function gameInit1() {
         choice2.text(gameMeat[0].o[1]);
         choice3.text(gameMeat[0].o[2]);
         choice4.text(gameMeat[0].o[3]);
-    
     }
-    
+
     // display wins, and losses
     winCount.text(Wins);
     console.log(Wins);
@@ -93,14 +87,53 @@ function gameInit1() {
     console.log(Losses);
 };
 
+function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+  }
+
+function decrement() {
+    //  Decrease number by one.
+    timer--;
+    //  Show the number in the #show-number tag.
+    timeDisplay.html("<p>" + timer + "</p>");
+    console.log(timer);
+
+    //  Once number hits zero...
+    if (timer === -1) {
+        //  ...run the stop function.
+        stop();
+        //  Alert the user that time is up.
+        alert("Time Up!");
+        // increses losses by one, then displays to user
+        Losses++;
+        lossCount.html(Losses);
+    }
+}
+
+function stop() {
+    //  Clears our intervalId
+    //  We just pass the name of the interval
+    //  to the clearInterval function.
+    clearInterval(intervalId);
+  }
+
+  console.log (gameMeat[0].a);
+  console.log (gameMeat[0].o[3]);
+
+
 // fucntion that reacts to mouse click
-ansToChose.on("click", function() {
-    if (ansToChose === gameMeat[0].a && gameOver === false) {
+Choices.on("click", function() {
+    if (gameMeat[0].o[3] === (gameMeat[0].a)) {
         Wins++;
+        winCount.html(Wins);
+        stop();
         // run function for q two
     }
-    if (ansToChose !== gameMeat[0].a  && gameOver === false) {
+    if (Choices !== gameMeat[0].a) {
         Losses++;
+        lossCount.html(Losses);
+        stop();
         //run function for q2
     }
     if (timeExpire === true) {
@@ -122,5 +155,3 @@ function timeUp() {
     $("#timer").append("<h2>Time's Up!</h2>");
     console.log("time is up");
 };
-
-
