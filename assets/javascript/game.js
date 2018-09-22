@@ -91,17 +91,17 @@ function gameInit1() {
     console.log(timer);
 
     // Display Questions
-    displayTitle.text("The Questions Is: ");
+    displayTitle.text("The questions is: ");
     console.log("Question is: ");
     displayMain.text(array[0].q);
     console.log(array[0].q);
 
-    displayTitle2.text("The Questions Is: ");
+    displayTitle2.text("The questions is: ");
     console.log("Question is: ");
     displayMain2.text(array[1].q);
     console.log(array[1].q);
 
-    displayTitle3.text("The Questions Is: ");
+    displayTitle3.text("The questions is: ");
     console.log("Question is: ");
     displayMain3.text(array[2].q);
     console.log(array[2].q);
