@@ -1,7 +1,7 @@
 // game variables
 
 // Question and Answer Object
-var gameMeat = [
+var array = [
     { 
     q: "What Year Did Wayne Gretzky Retire?", 
     a: "1999",
@@ -11,25 +11,42 @@ var gameMeat = [
     { 
     q: "Who Is The Richest video Game Streamer on Twitch?",
     a: "Ninja",
-    o: ["shroud", "Dr Disrespect", "summit1g", "Ninja"],
+    o: ["Ninja", "shroud", "Dr Disrespect", "summit1g"],
     },
     //------------------------//
     {
     q: "What Is the Best Selling Video Game of All Time?",
     a: "Tetris",
-    o: ["Minecraft", "Grand theft Auto 5", "Wii Sports", "Tetris"],
+    o: ["Minecraft","Tetris", "Grand theft Auto 5", "Wii Sports"],
     //------------------------//
     }
 ]
 
 //variables that reference HTML
 var displayTitle = $("#display-title"); // jumbotron for question display
+var displayTitle2 = $("#display-title2");
+var displayTitle3 = $("#display-title3")
+
 var displayMain = $("#display-main");
-var Choices = $(".ans-choices"); 
+var displayMain2 = $("#display-main2");
+var displayMain3 = $("#display-main3");
+
+var Choices = $("button"); 
 var choice1 = $("#1");
 var choice2 = $("#2");
 var choice3 = $("#3");
 var choice4 = $("#4");
+
+var choice12 = $("#12");
+var choice22 = $("#22");
+var choice32 = $("#32");
+var choice42 = $("#42");
+
+var choice13 = $("#13");
+var choice23 = $("#23");
+var choice33 = $("#33");
+var choice43 = $("#43");
+
 var winCount = $("#wins"); // references win and loss counter
 var lossCount = $("#losses");
 var timeDisplay = $("#timer"); //references the timer
@@ -42,6 +59,9 @@ var Losses = 0;
 var timer;
 var gameOver = false;
 var timeExpire = false;
+var questionAnswered;
+var q2Answered;
+var q3Answered;
 
 // empty variable to store the selected question
 var randomQuestions;
@@ -56,28 +76,60 @@ document.onkeypress = function gameStart(event){
         return;
     };
 
+console.log(array);
+console.log(Choices);
+console.log("button");
+
 // Creates function that initalizes teh game board
 // not sure if this is possible but we will see
 function gameInit1() {
     // sets up timer, and displays results
+    questionAnswered = false;
     run();
-    timer = 10;
+    timer = 15;
     decrement();
     console.log(timer);
 
-    // Display Question
+    // Display Questions
     displayTitle.text("The Questions Is: ");
     console.log("Question is: ");
-    displayMain.text(gameMeat[0].q);
-    console.log(gameMeat[0].q);
+    displayMain.text(array[0].q);
+    console.log(array[0].q);
+
+    displayTitle2.text("The Questions Is: ");
+    console.log("Question is: ");
+    displayMain2.text(array[1].q);
+    console.log(array[1].q);
+
+    displayTitle3.text("The Questions Is: ");
+    console.log("Question is: ");
+    displayMain3.text(array[2].q);
+    console.log(array[2].q);
+
 
     // display answers for first question
-    for (i = 0; i < gameMeat[0].o.length; i++) { 
-        console.log(gameMeat[0].o[i]);
-        choice1.text(gameMeat[0].o[0]);
-        choice2.text(gameMeat[0].o[1]);
-        choice3.text(gameMeat[0].o[2]);
-        choice4.text(gameMeat[0].o[3]);
+    for (i = 0; i < array[0].o.length; i++) { 
+        console.log(array[0].o[i]);
+        choice1.text(array[0].o[0]);
+        choice2.text(array[0].o[1]);
+        choice3.text(array[0].o[2]);
+        choice4.text(array[0].o[3]);
+    }
+
+    for (i = 0; i < array[1].o.length; i++) { 
+        console.log(array[1].o[i]);
+        choice12.text(array[1].o[0]);
+        choice22.text(array[1].o[1]);
+        choice32.text(array[1].o[2]);
+        choice42.text(array[1].o[3]);
+    }
+
+    for (i = 0; i < array[2].o.length; i++) { 
+        console.log(array[2].o[i]);
+        choice13.text(array[2].o[0]);
+        choice23.text(array[2].o[1]);
+        choice33.text(array[2].o[2]);
+        choice43.text(array[2].o[3]);
     }
 
     // display wins, and losses
@@ -85,6 +137,21 @@ function gameInit1() {
     console.log(Wins);
     lossCount.text(Losses);
     console.log(Losses);
+
+Choices.on("click", function() {
+
+    console.log($(this).text());
+    if ($(this).text() === array[0].a || $(this).text() === array[1].a || $(this).text() === array[2].a)  {
+        Wins++;
+        console.log(Wins);
+    }
+    else {
+        Losses++;
+    }
+    if (timeExpire === true) {
+        timeUp();
+    }
+});
 };
 
 function run() {
@@ -106,7 +173,7 @@ function decrement() {
         //  Alert the user that time is up.
         alert("Time Up!");
         // increses losses by one, then displays to user
-        Losses++;
+        winCount.html(Wins);
         lossCount.html(Losses);
     }
 }
@@ -117,30 +184,6 @@ function stop() {
     //  to the clearInterval function.
     clearInterval(intervalId);
   }
-
-  console.log (gameMeat[0].a);
-  console.log (gameMeat[0].o[3]);
-
-
-// fucntion that reacts to mouse click
-Choices.on("click", function() {
-    if (gameMeat[0].o[3] === (gameMeat[0].a)) {
-        Wins++;
-        winCount.html(Wins);
-        stop();
-        // run function for q two
-    }
-    if (Choices !== gameMeat[0].a) {
-        Losses++;
-        lossCount.html(Losses);
-        stop();
-        //run function for q2
-    }
-    if (timeExpire === true) {
-        losses++;
-        timeUp();
-    }
-});
 
 function GameReset () {
     wins = 0;
@@ -155,3 +198,9 @@ function timeUp() {
     $("#timer").append("<h2>Time's Up!</h2>");
     console.log("time is up");
 };
+
+
+
+
+
+
